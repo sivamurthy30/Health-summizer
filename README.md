@@ -82,6 +82,38 @@ PORT=3000 python run.py
 
 ---
 
+## 🎥 **Demo Video**
+
+<div align="center">
+
+### **Watch the Healthcare Symptom Checker in Action**
+
+[![Demo Video](https://img.shields.io/badge/▶️%20Watch%20Demo%20Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](./demo-video.mov)
+
+**📱 Interactive Demo Available**: [Download Demo Video (19.9 MB)](./demo-video.mov)
+
+> **Note**: Click the button above to download the demo video. The video shows the complete workflow including symptom input, AI analysis, and results display.
+
+### 🎬 **Demo Highlights:**
+- ✅ **Live Application Demo**: Real-time symptom analysis
+- ✅ **User Interface Walkthrough**: Clean, professional medical interface  
+- ✅ **AI Integration**: OpenAI GPT analysis in action
+- ✅ **Complete Workflow**: From symptom input to results display
+- ✅ **Emergency Features**: Medical disclaimers and safety information
+
+*For the best experience, download and watch the full demo video*
+
+**📹 What you'll see in the demo:**
+- Real-time symptom input and analysis
+- AI-powered medical information generation
+- Professional interface walkthrough
+- Emergency detection examples
+- Complete user workflow demonstration
+
+</div>
+
+---
+
 ## 🛠️ **Technology Stack**
 
 - **Backend**: Python, Flask
