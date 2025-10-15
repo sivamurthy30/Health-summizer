@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}Symptom Analysis - MedCheck{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h1 class="h2 text-primary mb-3">Medical Symptom Analysis</h1>
+            <p class="lead text-muted">Enter your symptoms to receive educational health information</p>
+        </div>
+
+        <!-- Main Form -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-clipboard-medical me-2"></i>Symptom Assessment
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('main.index') }}">
+                    {{ form.hidden_tag() }}
+                    
+                    <!-- Main Symptoms -->
+                    <div class="mb-4">
+                        {{ form.symptoms.label(class="form-label fw-bold") }}
+                        {{ form.symptoms(class="form-control" + (" is-invalid" if form.symptoms.errors else "")) }}
+                        
+                        {% if form.symptoms.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.symptoms.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        <div class="form-text">
+                            Include: when symptoms started, severity, location, and any patterns you've noticed.
+                        </div>
+                    </div>
+
+                    <!-- Patient Information (Optional) -->
+                    <div class="card bg-light mb-4">
+                        <div class="card-body">
+                            <h6 class="card-title text-primary mb-3">
+                                <i class="bi bi-person me-2"></i>Additional Information (Optional - helps improve analysis)
+                            </h6>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.age_range.label(class="form-label") }}
+                                    {{ form.age_range(class="form-select") }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.gender.label(class="form-label") }}
+                                    {{ form.gender(class="form-select") }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.pain_level.label(class="form-label") }}
+                                    {{ form.pain_level(class="form-select") }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.duration.label(class="form-label") }}
+                                    {{ form.duration(class="form-select") }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-3 mb-2">
+                                    <div class="form-check">
+                                        {{ form.has_fever(class="form-check-input") }}
+                                        {{ form.has_fever.label(class="form-check-label") }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <div class="form-check">
+                                        {{ form.has_allergies(class="form-check-input") }}
+                                        {{ form.has_allergies.label(class="form-check-label") }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-check">
+                                        {{ form.taking_medications(class="form-check-input") }}
+                                        {{ form.taking_medications.label(class="form-check-label") }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Emergency Warning -->
+                            <div class="alert alert-danger mt-3">
+                                <div class="form-check">
+                                    {{ form.emergency_symptoms(class="form-check-input") }}
+                                    {{ form.emergency_symptoms.label(class="form-check-label fw-bold") }}
+                                </div>
+                                {% if form.emergency_symptoms.errors %}
+                                <div class="text-danger small mt-2">
+                                    {% for error in form.emergency_symptoms.errors %}
+                                        <strong>{{ error }}</strong>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        {{ form.submit(class="btn btn-primary btn-lg") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Emergency Info -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card border-danger">
+                    <div class="card-body text-center">
+                        <i class="bi bi-exclamation-triangle-fill text-danger fs-2 mb-2"></i>
+                        <h6 class="card-title text-danger">Seek Immediate Care If:</h6>
+                        <ul class="list-unstyled small">
+                            <li>• Chest pain or difficulty breathing</li>
+                            <li>• Severe bleeding or injury</li>
+                            <li>• Loss of consciousness</li>
+                            <li>• Severe allergic reaction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-success">
+                    <div class="card-body text-center">
+                        <i class="bi bi-shield-check text-success fs-2 mb-2"></i>
+                        <h6 class="card-title text-success">Privacy Protected</h6>
+                        <p class="small mb-0">
+                            Your information is not stored. All data is processed 
+                            securely and used only for educational purposes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6 class="mb-0">Example Symptom Description</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong class="text-success">Good example:</strong>
+                        <p class="small fst-italic mt-1">
+                            "I've had a persistent cough for 3 days with yellow mucus, mild fever around 100°F, 
+                            and fatigue. The cough is worse at night."
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <strong class="text-warning">Too brief:</strong>
+                        <p class="small fst-italic mt-1">
+                            "I feel sick" or "My head hurts"
+                        </p>
+                        <p class="small text-primary mb-0">
+                            Add details about duration, severity, and location.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Feedback - MedCheck{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="text-center mb-4">
+            <h2 class="text-primary">Your Feedback</h2>
+            <p class="text-muted">Help us improve our symptom analysis service</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-chat-heart me-2"></i>Rate Your Experience
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    
+                    <div class="mb-4">
+                        {{ form.rating.label(class="form-label fw-bold") }}
+                        <div class="mt-2">
+                            {% for subfield in form.rating %}
+                            <div class="form-check mb-2">
+                                {{ subfield(class="form-check-input") }}
+                                {{ subfield.label(class="form-check-label") }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% if form.rating.errors %}
+                        <div class="text-danger small">
+                            {% for error in form.rating.errors %}{{ error }}{% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-4">
+                        {{ form.comments.label(class="form-label fw-bold") }}
+                        {{ form.comments(class="form-control") }}
+                        {% if form.comments.errors %}
+                        <div class="text-danger small">
+                            {% for error in form.comments.errors %}{{ error }}{% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        {{ form.submit(class="btn btn-success btn-lg") }}
+                        <a href="{{ url_for('main.index') }}" class="btn btn-outline-secondary">
+                            Skip Feedback
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

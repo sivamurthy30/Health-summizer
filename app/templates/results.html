@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis Results - MedCheck{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h1 class="h2 text-primary">Symptom Analysis Results</h1>
+            <p class="text-muted">Educational health information based on your symptoms</p>
+        </div>
+
+        <!-- Emergency Alert -->
+        {% if analysis.emergency_detected %}
+        <div class="alert alert-danger border-danger">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-exclamation-triangle-fill fs-2 me-3"></i>
+                <div>
+                    <h4 class="alert-heading">⚠️ Seek Immediate Medical Attention</h4>
+                    <p class="mb-0">
+                        Based on your symptoms, you should <strong>contact emergency services or visit 
+                        an emergency room immediately</strong>. Do not delay seeking professional medical care.
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <!-- Main Results -->
+            <div class="col-lg-8">
+                <!-- Your Symptoms -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="bi bi-chat-quote me-2"></i>Your Symptoms
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-0 fst-italic">"{{ symptoms }}"</p>
+                    </div>
+                </div>
+
+                <!-- Possible Conditions -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="bi bi-search me-2"></i>Possible Conditions
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if analysis.conditions %}
+                            {% for condition in analysis.conditions %}
+                            <div class="mb-4 {% if not loop.last %}border-bottom pb-4{% endif %}">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="fw-bold text-primary mb-0">{{ condition.name }}</h6>
+                                    <span class="badge bg-{{ 'success' if condition.probability == 'High' else 'warning' if condition.probability == 'Medium' else 'secondary' }}">
+                                        {{ condition.probability }}
+                                    </span>
+                                </div>
+                                
+                                <p class="text-muted mb-3">{{ condition.description }}</p>
+                                
+                                {% if condition.recommendations %}
+                                <div>
+                                    <strong>Recommended Actions:</strong>
+                                    <ul class="mt-2 mb-0">
+                                        {% for recommendation in condition.recommendations %}
+                                        <li>{{ recommendation }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="text-center py-4">
+                                <i class="bi bi-info-circle text-muted fs-1 mb-3"></i>
+                                <h6 class="text-muted">No specific conditions identified</h6>
+                                <p class="text-muted mb-0">Please consult a healthcare professional for evaluation.</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- General Recommendations -->
+                {% if analysis.general_recommendations %}
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-lightbulb me-2"></i>General Recommendations
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="mb-0">
+                            {% for recommendation in analysis.general_recommendations %}
+                            <li>{{ recommendation }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Analysis Summary -->
+                {% if analysis.specialist_referral or analysis.triage_level %}
+                <div class="card mb-4 border-info">
+                    <div class="card-header bg-info text-white">
+                        <h6 class="mb-0">
+                            <i class="bi bi-clipboard-data me-2"></i>Analysis Summary
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        {% if analysis.triage_level %}
+                        <div class="mb-3">
+                            <strong>Priority Level:</strong>
+                            <span class="badge bg-{{ 'danger' if analysis.triage_level == 'Emergency' else 'warning' if analysis.triage_level == 'Urgent' else 'success' }} ms-2">
+                                {{ analysis.triage_level }}
+                            </span>
+                        </div>
+                        {% endif %}
+                        
+                        {% if analysis.specialist_referral %}
+                        <div class="mb-3">
+                            <strong>Specialist Referral:</strong><br>
+                            <span class="text-primary">{{ analysis.specialist_referral }}</span>
+                        </div>
+                        {% endif %}
+                        
+                        {% if analysis.follow_up_timeline %}
+                        <div class="mb-3">
+                            <strong>Follow-up Timeline:</strong><br>
+                            <span class="text-info">{{ analysis.follow_up_timeline }}</span>
+                        </div>
+                        {% endif %}
+                        
+                        {% if analysis.confidence_score %}
+                        <div class="mb-0">
+                            <strong>Analysis Confidence:</strong><br>
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-{{ 'success' if analysis.confidence_score > 0.7 else 'warning' if analysis.confidence_score > 0.4 else 'danger' }}" 
+                                     style="width: {{ (analysis.confidence_score * 100)|round }}%">
+                                    {{ (analysis.confidence_score * 100)|round }}%
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Risk Factors -->
+                {% if analysis.risk_factors %}
+                <div class="card mb-4 border-warning">
+                    <div class="card-header bg-warning">
+                        <h6 class="mb-0">
+                            <i class="bi bi-exclamation-triangle me-2"></i>Risk Factors
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        {% for risk_factor in analysis.risk_factors %}
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="bi bi-dot text-warning me-1 mt-1"></i>
+                            <span class="small">{{ risk_factor }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Red Flags -->
+                {% if analysis.red_flags %}
+                <div class="card mb-4 border-danger">
+                    <div class="card-header bg-danger text-white">
+                        <h6 class="mb-0">
+                            <i class="bi bi-flag-fill me-2"></i>Warning Signs
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        {% for red_flag in analysis.red_flags %}
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="bi bi-exclamation-triangle-fill text-danger me-2 mt-1"></i>
+                            <span class="small">{{ red_flag }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Actions -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h6 class="mb-0">Actions</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('main.feedback') }}" class="btn btn-success">
+                                <i class="bi bi-star me-2"></i>Rate This Analysis
+                            </a>
+                            <a href="{{ url_for('main.symptom_history') }}" class="btn btn-info">
+                                <i class="bi bi-plus-circle me-2"></i>Add Medical History
+                            </a>
+                            <a href="{{ url_for('main.index') }}" class="btn btn-primary">
+                                <i class="bi bi-arrow-left me-2"></i>New Analysis
+                            </a>
+                            <button onclick="window.print()" class="btn btn-outline-secondary">
+                                <i class="bi bi-printer me-2"></i>Print Results
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- When to Seek Care -->
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0">When to Seek Care</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3 p-2 border border-danger rounded">
+                            <h6 class="text-danger mb-1">Emergency (Call 911)</h6>
+                            <small>Severe chest pain, difficulty breathing, loss of consciousness</small>
+                        </div>
+                        
+                        <div class="mb-3 p-2 border border-warning rounded">
+                            <h6 class="text-warning mb-1">Urgent Care (Same Day)</h6>
+                            <small>High fever, severe pain, persistent vomiting</small>
+                        </div>
+                        
+                        <div class="p-2 border border-success rounded">
+                            <h6 class="text-success mb-1">Primary Care (Schedule)</h6>
+                            <small>Ongoing symptoms, routine check-up, preventive care</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimers -->
+        <div class="card mt-4 border-warning">
+            <div class="card-header bg-warning">
+                <h5 class="mb-0">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Important Disclaimers
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="mb-3">
+                    {% if analysis.disclaimers %}
+                        {% for disclaimer in analysis.disclaimers %}
+                        <li>{{ disclaimer }}</li>
+                        {% endfor %}
+                    {% endif %}
+                    <li>This analysis is for educational purposes only and is not a medical diagnosis</li>
+                    <li>Always consult with healthcare providers for proper medical evaluation</li>
+                    <li>Seek medical attention if symptoms worsen or new symptoms develop</li>
+                </ul>
+                
+                <div class="alert alert-info mb-0">
+                    <strong>Next Steps:</strong> Consider scheduling an appointment with your primary care physician 
+                    or visiting an urgent care center for professional evaluation.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

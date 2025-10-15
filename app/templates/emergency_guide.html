@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}Emergency Guide - MedCheck{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="text-center mb-4">
+            <h1 class="h2 text-danger">Emergency Symptoms Guide</h1>
+            <p class="lead text-muted">Know when to seek immediate medical attention</p>
+        </div>
+
+        <!-- Emergency Call 911 -->
+        <div class="card border-danger mb-4">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-telephone-fill me-2"></i>
+                    Call 911 Immediately
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="fw-bold text-danger mb-3">
+                    If you or someone else is experiencing any of these symptoms, call 911 or go to the nearest emergency room immediately:
+                </p>
+                <div class="row">
+                    {% for symptom in emergency_info.immediate_911 %}
+                    <div class="col-md-6 mb-2">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-exclamation-triangle-fill text-danger me-2"></i>
+                            <span>{{ symptom }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="alert alert-danger mt-3 mb-0">
+                    <strong>Don't wait or try to drive yourself.</strong> Call 911 for immediate emergency medical services.
+                </div>
+            </div>
+        </div>
+
+        <!-- Urgent Care -->
+        <div class="card border-warning mb-4">
+            <div class="card-header bg-warning">
+                <h4 class="mb-0">
+                    <i class="bi bi-clock-fill me-2"></i>
+                    Seek Urgent Care (Same Day)
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="fw-bold text-warning mb-3">
+                    These symptoms require medical attention within hours, but may not need emergency services:
+                </p>
+                <div class="row">
+                    {% for symptom in emergency_info.urgent_care %}
+                    <div class="col-md-6 mb-2">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-exclamation-circle text-warning me-2"></i>
+                            <span>{{ symptom }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="alert alert-warning mt-3 mb-0">
+                    <strong>Contact your doctor or visit urgent care.</strong> Don't wait more than 24 hours.
+                </div>
+            </div>
+        </div>
+
+        <!-- Primary Care -->
+        <div class="card border-success mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-calendar-check me-2"></i>
+                    Schedule Primary Care Appointment
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="fw-bold text-success mb-3">
+                    These symptoms can typically wait for a scheduled appointment with your regular doctor:
+                </p>
+                <div class="row">
+                    {% for symptom in emergency_info.primary_care %}
+                    <div class="col-md-6 mb-2">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-check-circle text-success me-2"></i>
+                            <span>{{ symptom }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="alert alert-success mt-3 mb-0">
+                    <strong>Schedule within 1-2 weeks.</strong> Monitor symptoms and seek urgent care if they worsen.
+                </div>
+            </div>
+        </div>
+
+        <!-- Important Numbers -->
+        <div class="card border-info">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-telephone me-2"></i>
+                    Important Phone Numbers
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 text-center mb-3">
+                        <i class="bi bi-telephone-fill text-danger fs-1 mb-2"></i>
+                        <h5 class="text-danger">Emergency</h5>
+                        <p class="h4 fw-bold">911</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-3">
+                        <i class="bi bi-shield-exclamation text-warning fs-1 mb-2"></i>
+                        <h5 class="text-warning">Poison Control</h5>
+                        <p class="h6 fw-bold">1-800-222-1222</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-3">
+                        <i class="bi bi-chat-dots text-info fs-1 mb-2"></i>
+                        <h5 class="text-info">Crisis Text Line</h5>
+                        <p class="h6 fw-bold">Text HOME to 741741</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{{ url_for('main.index') }}" class="btn btn-primary btn-lg">
+                <i class="bi bi-arrow-left me-2"></i>Back to Symptom Checker
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
