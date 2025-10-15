@@ -83,13 +83,78 @@
 
 *Watch our comprehensive video demonstration to understand the full capabilities of the Healthcare Symptom Checker*
 
-[![Healthcare Symptom Checker Demo](https://img.shields.io/badge/▶️%20Watch%20Demo%20Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](./demo-video.mov)
+### **🎬 Watch the Demo Video**
 
-**📁 Local Demo Video**: `demo-video.mov` (19.9 MB)
+<video width="100%" controls>
+  <source src="./demo-video.mov" type="video/mp4">
+  <source src="./demo-video.mov" type="video/quicktime">
+  Your browser does not support the video tag. <a href="./demo-video.mov">Download the video</a> to watch it.
+</video>
 
-> **Note**: The demo video is included in the project repository. Click the button above to download and watch the demonstration.
+**📁 Alternative Access Methods:**
+
+[![Download Demo Video](https://img.shields.io/badge/📥%20Download%20Video-4CAF50?style=for-the-badge)](./demo-video.mov)
+[![View Raw Video](https://img.shields.io/badge/🎥%20View%20Raw-FF9800?style=for-the-badge)](https://github.com/sivamurthy30/Health-summizer/raw/main/demo-video.mov)
+
+**📊 Video Details**: `demo-video.mov` (19.9 MB) | Duration: ~2 minutes | Format: QuickTime MOV
+
+> **💡 Tip**: If the video doesn't play above, click "View Raw" to open it directly or "Download Video" to save it locally.
 
 </div>
+
+### **🖼️ Quick Preview (GIF)**
+
+```
+🎬 [Demo Video Preview - Click "View Raw" above to watch]
+┌─────────────────────────────────────────────────────────────┐
+│  🏥 Healthcare Symptom Checker                              │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │ ⚠️  Medical Disclaimer: Educational Use Only        │    │
+│  └─────────────────────────────────────────────────────┘    │
+│                                                             │
+│  📝 Describe Your Symptoms:                                │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │ I have been experiencing a persistent cough for     │    │
+│  │ the past 3 days with yellow mucus, mild fever      │    │
+│  │ around 100°F, and fatigue. The cough is worse at   │    │
+│  │ night and I feel short of breath when walking...   │    │
+│  └─────────────────────────────────────────────────────┘    │
+│                                                             │
+│           [🔍 Analyze Symptoms]                             │
+│                                                             │
+│  ⬇️ AI Analysis Results ⬇️                                  │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │ 🤖 Educational Analysis:                            │    │
+│  │ Based on your symptoms, this could be related to... │    │
+│  │ • Possible respiratory infection                    │    │
+│  │ • Recommendations: Rest, hydration, monitor fever   │    │
+│  │ • Seek medical care if symptoms worsen             │    │
+│  └─────────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+<details>
+<summary><b>📸 How to Create GIF Preview (Click to expand)</b></summary>
+
+To create an animated GIF from the demo video for better GitHub compatibility:
+
+```bash
+# Using ffmpeg (install with: brew install ffmpeg)
+ffmpeg -i demo-video.mov -vf "fps=10,scale=800:-1:flags=lanczos" -t 30 demo-preview.gif
+
+# Using online tools:
+# 1. Upload demo-video.mov to https://ezgif.com/video-to-gif
+# 2. Set width to 800px, frame rate to 10fps
+# 3. Trim to first 30 seconds for quick preview
+# 4. Download and add to repository
+```
+
+Once created, add the GIF to README:
+```markdown
+![Healthcare Symptom Checker Demo](./demo-preview.gif)
+```
+
+</details>
 
 ### 📹 **What You'll See in the Demo:**
 
