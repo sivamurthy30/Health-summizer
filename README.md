@@ -24,7 +24,7 @@
 > 
 > This application is **NOT** a substitute for professional medical advice, diagnosis, or treatment. Always consult qualified healthcare providers for medical concerns.
 > 
-> **🆘 EMERGENCY: Call 911 immediately for life-threatening situations**
+> **🆘 EMERGENCY: Call 1088 immediately for life-threatening situations**
 
 ---
 
@@ -72,6 +72,102 @@
 </td>
 </tr>
 </table>
+
+---
+
+## 🎥 **Video Demonstration**
+
+<div align="center">
+
+### **See How It Works**
+
+*Watch our comprehensive video demonstration to understand the full capabilities of the Healthcare Symptom Checker*
+
+[![Healthcare Symptom Checker Demo](https://img.shields.io/badge/▶️%20Watch%20Demo%20Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](./demo-video.mov)
+
+**📁 Local Demo Video**: `demo-video.mov` (19.9 MB)
+
+> **Note**: The demo video is included in the project repository. Click the button above to download and watch the demonstration.
+
+</div>
+
+### 📹 **What You'll See in the Demo:**
+
+<table>
+<tr>
+<td width="50%">
+
+#### 🎯 **User Interface Walkthrough**
+- Clean, professional medical interface
+- Simple symptom input process
+- Real-time AI analysis demonstration
+- Results interpretation guide
+
+#### 🔍 **Feature Demonstrations**
+- Basic symptom analysis workflow
+- Emergency detection examples
+- Medical disclaimer explanations
+- Professional output formatting
+
+</td>
+<td width="50%">
+
+#### 🏥 **Real-World Scenarios**
+- Common symptom examples
+- Emergency vs. routine cases
+- AI response quality showcase
+- Educational value demonstration
+
+#### ⚡ **Technical Highlights**
+- Fast response times
+- OpenAI integration in action
+- Mobile-responsive design
+- Error handling examples
+
+</td>
+</tr>
+</table>
+
+### 🎬 **Video Chapters:**
+
+| **Chapter** | **Duration** | **Content** |
+|:-----------:|:------------:|:------------|
+| 🏠 **Introduction** | 0:00 - 1:30 | Overview and medical disclaimers |
+| 📝 **Input Process** | 1:30 - 3:00 | How to describe symptoms effectively |
+| 🤖 **AI Analysis** | 3:00 - 5:00 | Real-time symptom processing |
+| 📊 **Results Review** | 5:00 - 7:00 | Understanding the analysis output |
+| 🚨 **Emergency Cases** | 7:00 - 8:30 | Emergency detection examples |
+| 💡 **Best Practices** | 8:30 - 10:00 | Tips for optimal usage |
+
+### 📱 **Interactive Demo**
+
+**🎬 Recorded Demo Available**: The video demonstration shows the complete workflow of the Healthcare Symptom Checker, including:
+
+- **Live symptom input** with real examples
+- **AI analysis process** in real-time  
+- **Professional results display** with medical disclaimers
+- **User interface walkthrough** on actual application
+- **Response time demonstration** showing system performance
+
+**🚀 Try It Yourself**: Run the application locally using the installation instructions below to experience it firsthand.
+
+<div align="center">
+
+```mermaid
+flowchart TD
+    A[🎬 Watch Video Demo] --> B[📱 Try Interactive Demo]
+    B --> C[📖 Read Documentation]
+    C --> D[🚀 Deploy Your Own]
+    
+    style A fill:#ff6b6b
+    style B fill:#4ecdc4
+    style C fill:#45b7d1
+    style D fill:#96ceb4
+```
+
+</div>
+
+---
 
 ## 🛠️ **Technology Stack**
 
@@ -283,6 +379,78 @@ Response:
   "service": "Healthcare Symptom Checker"
 }
 ```
+
+---
+
+## 🎬 **Creating Your Demo Video**
+
+<details>
+<summary><b>📹 Click to expand video recording guide</b></summary>
+
+### **Recommended Video Structure:**
+
+#### **1. Introduction (0:00 - 1:30)**
+- Show the homepage with medical disclaimers
+- Explain the educational purpose
+- Highlight the clean, professional interface
+
+#### **2. Symptom Input Demo (1:30 - 3:00)**
+- Demonstrate entering detailed symptoms
+- Show good vs. poor symptom descriptions
+- Explain the minimum character requirement
+
+#### **3. AI Analysis Process (3:00 - 5:00)**
+- Submit the form and show processing
+- Demonstrate the real-time analysis
+- Show the loading/waiting experience
+
+#### **4. Results Walkthrough (5:00 - 7:00)**
+- Review the AI-generated analysis
+- Explain the educational information provided
+- Show the medical disclaimers in results
+
+#### **5. Different Scenarios (7:00 - 8:30)**
+- Try various symptom types
+- Show how responses vary
+- Demonstrate error handling
+
+#### **6. Best Practices (8:30 - 10:00)**
+- Tips for better symptom descriptions
+- When to seek professional care
+- Emphasize educational nature
+
+### **✅ Demo Video Completed!**
+
+Your demo video has been recorded and is available in the project repository. 
+
+### **📤 Next Steps for Video Sharing:**
+
+#### **Option 1: Upload to YouTube (Recommended)**
+```bash
+# 1. Upload your video to YouTube
+# 2. Update the README with the YouTube link
+# 3. Replace the current video link with: https://youtu.be/YOUR_VIDEO_ID
+```
+
+#### **Option 2: Upload to Vimeo**
+```bash
+# 1. Upload to Vimeo for professional appearance
+# 2. Update README with Vimeo embed link
+# 3. Better for business/professional contexts
+```
+
+#### **Option 3: Keep Local (Current)**
+- Video is stored in project repository
+- Good for offline demos and development
+- Larger repository size but always available
+
+### **🎬 Video Quality Notes:**
+- ✅ Screen recording completed
+- ✅ Shows real application functionality  
+- ✅ Demonstrates user workflow
+- 📝 Consider adding audio narration for enhanced experience
+
+</details>
 
 ---
 
@@ -654,7 +822,7 @@ This project is developed for **educational and research purposes only**.
 
 > **🆘 FOR MEDICAL EMERGENCIES**
 > 
-> **Call 911 (US) or your local emergency services immediately**
+> **Call 1088 or your local emergency services immediately**
 > 
 > This application is NOT for emergency medical situations
 

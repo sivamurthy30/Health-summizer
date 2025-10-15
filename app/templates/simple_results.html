@@ -1,0 +1,80 @@
+{% extends "simple_base.html" %}
+
+{% block title %}Analysis Results - Healthcare Symptom Checker{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <!-- Medical Disclaimer -->
+            <div class="alert alert-danger border-danger" role="alert">
+                <h5 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Important Medical Disclaimer</h5>
+                <p class="mb-2"><strong>{{ analysis.disclaimer }}</strong></p>
+                <p class="mb-0"><strong>{{ analysis.emergency_note }}</strong></p>
+            </div>
+
+            <!-- Symptoms Summary -->
+            <div class="card mb-4">
+                <div class="card-header bg-secondary text-white">
+                    <h4 class="card-title mb-0"><i class="fas fa-clipboard-list"></i> Your Symptoms</h4>
+                </div>
+                <div class="card-body">
+                    <p class="lead">{{ symptoms }}</p>
+                </div>
+            </div>
+
+            <!-- Analysis Results -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title mb-0"><i class="fas fa-stethoscope"></i> Educational Analysis</h4>
+                </div>
+                <div class="card-body">
+                    <div class="analysis-content">
+                        {{ analysis.analysis | replace('\n', '<br>') | safe }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <a href="{{ url_for('main.index') }}" class="btn btn-primary btn-lg w-100">
+                        <i class="fas fa-arrow-left"></i> Analyze New Symptoms
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button onclick="window.print()" class="btn btn-outline-secondary btn-lg w-100">
+                        <i class="fas fa-print"></i> Print Results
+                    </button>
+                </div>
+            </div>
+
+            <!-- Emergency Information -->
+            <div class="alert alert-warning" role="alert">
+                <h5 class="alert-heading"><i class="fas fa-phone"></i> When to Seek Immediate Care</h5>
+                <ul class="mb-0">
+                    <li>If you experience severe or worsening symptoms</li>
+                    <li>If you have difficulty breathing or chest pain</li>
+                    <li>If you feel your condition is serious or life-threatening</li>
+                    <li>If you are unsure about your symptoms</li>
+                </ul>
+                <hr>
+                <p class="mb-0"><strong>Emergency: Call 1088 | Non-Emergency: Contact your healthcare provider</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.analysis-content {
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+@media print {
+    .btn, .alert-warning:last-child {
+        display: none !important;
+    }
+}
+</style>
+{% endblock %}

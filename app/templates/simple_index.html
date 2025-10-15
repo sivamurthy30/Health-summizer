@@ -1,0 +1,68 @@
+{% extends "simple_base.html" %}
+
+{% block title %}Healthcare Symptom Checker{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Medical Disclaimer -->
+            <div class="alert alert-warning border-warning" role="alert">
+                <h5 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Important Medical Disclaimer</h5>
+                <p class="mb-2"><strong>This tool is for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment.</strong></p>
+                <p class="mb-2">Always consult with a qualified healthcare provider for medical concerns.</p>
+                <p class="mb-0"><strong>In case of emergency, call 1088 immediately.</strong></p>
+            </div>
+
+            <!-- Error Message -->
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <!-- Main Form -->
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0"><i class="fas fa-stethoscope"></i> Symptom Analysis</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('main.index') }}">
+                        <!-- Symptoms Input -->
+                        <div class="mb-4">
+                            <label for="symptoms" class="form-label fw-bold">Describe Your Symptoms</label>
+                            <textarea name="symptoms" id="symptoms" class="form-control" rows="6" 
+                                    placeholder="Please describe your symptoms in detail (minimum 10 characters). Include information about when they started, severity, and any factors that make them better or worse." 
+                                    required></textarea>
+                            <div class="form-text">Provide as much detail as possible for a better analysis.</div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-search"></i> Analyze Symptoms
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="mt-4">
+                <div class="card border-info">
+                    <div class="card-body">
+                        <h5 class="card-title text-info"><i class="fas fa-info-circle"></i> How to Use</h5>
+                        <ul class="mb-0">
+                            <li>Describe your symptoms in detail</li>
+                            <li>Include when symptoms started and their severity</li>
+                            <li>Mention any factors that make symptoms better or worse</li>
+                            <li>Remember this is educational information only</li>
+                            <li>Always consult healthcare professionals for medical advice</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
